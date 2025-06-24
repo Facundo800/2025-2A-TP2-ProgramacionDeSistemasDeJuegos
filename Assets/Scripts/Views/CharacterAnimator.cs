@@ -43,4 +43,9 @@ public class CharacterAnimator : MonoBehaviour
         animator.SetBool(isFallingParameter, character.Velocity.y < 0);
         spriteRenderer.flipX = speed.x < 0;
     }
+
+    public void PlayAnimation(string animation)
+    {
+        animator.Play(animation);   
+    }
 }
