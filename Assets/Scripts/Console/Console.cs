@@ -19,7 +19,7 @@ public class Console : MonoBehaviour
     private void Awake()
     {
         inputField.onSubmit.AddListener(SubmitInput);
-        RegisterCommand(new HelpCommand());
+        RegisterCommand(new HelpCommand(commands));
         RegisterCommand(new AliassesCommand());
         RegisterCommand(new PlayAnimationCommand());
     }
@@ -40,7 +40,6 @@ public class Console : MonoBehaviour
         if (commands.TryGetValue(commandName, out var command))
         {
             command.Execute(parameter);
-            Debug.Log("a");
         }
 
     }
