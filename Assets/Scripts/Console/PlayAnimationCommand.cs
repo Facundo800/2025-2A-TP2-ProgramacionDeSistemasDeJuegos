@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayAnimationAction 
+public class PlayAnimationCommand 
 {
     public void Execute(string animation)
     {
@@ -10,6 +10,18 @@ public class PlayAnimationAction
         {
             item.PlayAnimation(animation);
         }
+    }
+    public string[] GetAliasses()
+    {
+        return new string[]
+        {
+            "PlayAnimation","Play","P",
+        };
+    }
+
+    public string GetDescription()
+    {
+        return "PlayAnimation From All Characters";
     }
 
 }

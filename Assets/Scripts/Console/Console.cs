@@ -31,33 +31,5 @@ public class Console : MonoBehaviour
         }
         consoleText.text = output;
         inputField.text = "";
-        if (input.Contains("Jump")) 
-         new PlayAnimationAction().Execute(input);   
-    }
-}
-
-public class HelpAction : IAction
-{
-    public string Execute()
-    {
-        return "Help Action Executed";
-    }
-
-    public string GetAlias()
-    {
-        return "Help";
-    }
-}
-
-public class AliassesAction : IAction
-{
-    public string Execute()
-    {
-        return "";
-    }
-
-    public string GetAlias()
-    {
-        return "Aliasses";
     }
 }
