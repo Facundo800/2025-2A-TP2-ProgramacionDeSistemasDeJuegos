@@ -14,7 +14,7 @@ public class HelpCommand : ICommand
     {
         if (commands.TryGetValue(parameter, out var command))
         {
-            Debug.Log(parameter + " " + command.GetDescription());
+            Debug.Log("Command: " + parameter + " -> " + command.GetDescription());
         }
     }
 
@@ -28,6 +28,6 @@ public class HelpCommand : ICommand
 
     public string GetDescription()
     {
-        return "Get Description From A Command";
+        return "Help [command]: Get Description From A Command";
     }
 }

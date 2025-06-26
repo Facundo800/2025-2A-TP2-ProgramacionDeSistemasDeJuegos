@@ -20,7 +20,7 @@ public class Console : MonoBehaviour
     {
         inputField.onSubmit.AddListener(SubmitInput);
         RegisterCommand(new HelpCommand(commands));
-        RegisterCommand(new AliassesCommand());
+        RegisterCommand(new AliassesCommand(commands));
         RegisterCommand(new PlayAnimationCommand());
     }
     private void SubmitInput(string input)
