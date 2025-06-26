@@ -1,8 +1,11 @@
+using System;
+using UnityEngine;
+
 public class HelpCommand : ICommand
 {
     public void Execute(string parameter)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Se Ejecuto El Command Help");
     }
 
     public string[] GetAliasses()

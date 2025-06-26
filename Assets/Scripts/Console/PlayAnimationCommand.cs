@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayAnimationCommand 
+public class PlayAnimationCommand : ICommand
 {
     public void Execute(string animation)
     {
@@ -10,6 +10,7 @@ public class PlayAnimationCommand
         {
             item.PlayAnimation(animation);
         }
+        Debug.Log("Se Ejecuto El Command PlayAnimation");
     }
     public string[] GetAliasses()
     {
