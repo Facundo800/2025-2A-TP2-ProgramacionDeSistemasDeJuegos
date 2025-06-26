@@ -15,6 +15,17 @@ public class AliassesCommand : ICommand
         {
             Debug.Log("Aliasses For: " + parameter + " -> " + GetAliasses(command));
         }
+        else
+        {
+            if (parameter == "")
+            {
+                Debug.Log("Command Name Required");
+            }
+            else
+            {
+                Debug.Log("Command Not Found: " + parameter);
+            }
+        }
     }
 
     private static string GetAliasses(ICommand command)

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class Console : MonoBehaviour
     }
     private void SubmitInput(string input)
     {
+        if (input == "") return;
         inputs.Add(input);
         if (inputs.Count > amountOfLogs)
             inputs.RemoveAt(0);
@@ -36,9 +38,10 @@ public class Console : MonoBehaviour
         consoleText.text = output;
         inputField.text = "";
         string commandName = input.ToLower().Split(' ')[0];
-        string parameter = input.ToLower().Split(' ')[1];
+        
         if (commands.TryGetValue(commandName, out var command))
         {
+            string parameter = input.ToLower().Split(' ').LastOrDefault();
             command.Execute(parameter);
         }
 

@@ -16,6 +16,17 @@ public class HelpCommand : ICommand
         {
             Debug.Log("Command: " + parameter + " -> " + command.GetDescription());
         }
+        else 
+        {
+            if (parameter == "")
+            {
+                Debug.Log("Command Name Required");
+            }
+            else
+            {
+                Debug.Log("Command Not Found: " + parameter);
+            }
+        }
     }
 
     public string[] GetAliasses()
