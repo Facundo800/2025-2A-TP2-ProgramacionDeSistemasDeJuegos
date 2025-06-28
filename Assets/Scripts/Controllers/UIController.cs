@@ -10,8 +10,8 @@ namespace Assets.Scripts.Controllers
 {
     public class UIController: MonoBehaviour
     {
-        public IUIControllerModel Model;
-        public Console Console;
+        [SerializeField] private IUIControllerModel Model;
+        [SerializeField] private Console Console;
         public void Setup(IUIControllerModel model)
         {
             Model = model;

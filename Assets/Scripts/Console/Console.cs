@@ -24,10 +24,11 @@ public class Console : MonoBehaviour, ILogHandler
         logHandler = Debug.unityLogger.logHandler;
         Debug.unityLogger.logHandler = this;
         inputField.onSubmit.AddListener(SubmitInput);
-        RegisterCommand(new HelpCommand(commands));
-        RegisterCommand(new AliassesCommand(commands));
-        RegisterCommand(new PlayAnimationCommand());
     }
+    public Dictionary<string, ICommand> GetCommands() 
+    {  
+       return commands;
+    } 
     private void SubmitInput(string input)
     {
         if (input == "") return;
@@ -43,7 +44,7 @@ public class Console : MonoBehaviour, ILogHandler
 
     }
 
-    private void RegisterCommand(ICommand command)
+    public void RegisterCommand(ICommand command)
     {
         foreach (var item in command.GetAliasses())
         {
