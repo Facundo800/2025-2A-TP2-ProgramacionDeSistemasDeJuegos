@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -5,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Console : MonoBehaviour
+public class Console : MonoBehaviour, ILogHandler
 {
     [SerializeField] private TMP_InputField inputField;
     [SerializeField] private TextMeshProUGUI consoleText;
@@ -14,11 +15,13 @@ public class Console : MonoBehaviour
 
     Dictionary<string,ICommand>commands = new Dictionary<string,ICommand>();
 
-    List<string> inputs = new List<string>();
+    private ILogHandler logHandler;
 
 
     private void Awake()
     {
+        logHandler = Debug.unityLogger.logHandler;
+        Debug.unityLogger.logHandler = this;
         inputField.onSubmit.AddListener(SubmitInput);
         RegisterCommand(new HelpCommand(commands));
         RegisterCommand(new AliassesCommand(commands));
@@ -27,15 +30,7 @@ public class Console : MonoBehaviour
     private void SubmitInput(string input)
     {
         if (input == "") return;
-        inputs.Add(input);
-        if (inputs.Count > amountOfLogs)
-            inputs.RemoveAt(0);
-        string output = "";
-        foreach (var item in inputs)
-        {
-            output += item + "\n";
-        }
-        consoleText.text = output;
+        consoleText.text += input + "\n";
         inputField.text = "";
         string commandName = input.ToLower().Split(' ')[0];
         
@@ -55,4 +50,16 @@ public class Console : MonoBehaviour
         }
     }
 
+    public void LogFormat(LogType logType, UnityEngine.Object context, string format, params object[] args)
+    {
+       string log = string.Format(format,args);
+        consoleText.text += logType + " " + log + "\n";
+        logHandler.LogFormat(logType, context, format, args);
+    }
+
+    public void LogException(Exception exception, UnityEngine.Object context)
+    {
+        consoleText.text += "[Exception] " + exception.Message + "\n";
+        logHandler.LogException(exception, context);
+    }
 }
