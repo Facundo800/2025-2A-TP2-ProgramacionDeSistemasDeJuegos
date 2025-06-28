@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,5 +62,10 @@ public class Console : MonoBehaviour, ILogHandler
     {
         consoleText.text += "[Exception] " + exception.Message + "\n";
         logHandler.LogException(exception, context);
+    }
+
+    public void Open()
+    {
+       gameObject.SetActive(!gameObject.activeSelf);
     }
 }
