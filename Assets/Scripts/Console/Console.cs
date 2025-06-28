@@ -36,7 +36,7 @@ public class Console : MonoBehaviour, ILogHandler
         
         if (commands.TryGetValue(commandName, out var command))
         {
-            string parameter = input.ToLower().Split(' ').LastOrDefault();
+            string parameter = input.Split(' ').LastOrDefault();
             command.Execute(parameter);
         }
 

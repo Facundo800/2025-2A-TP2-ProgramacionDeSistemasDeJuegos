@@ -10,7 +10,7 @@ public class PlayAnimationCommand : ICommand
         {
             item.PlayAnimation(animation);
         }
-        Debug.Log("Se Ejecuto El Command PlayAnimation");
+        Debug.Log("Play Animation " + animation + " For All Characters ");
     }
     public string[] GetAliasses()
     {

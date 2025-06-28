@@ -11,19 +11,20 @@ public class AliassesCommand : ICommand
     }
     public void Execute(string parameter)
     {
-        if (commands.TryGetValue(parameter, out var command))
+        string lowerParameter = parameter.ToLower();
+        if (commands.TryGetValue(lowerParameter, out var command))
         {
-            Debug.Log("Aliasses For: " + parameter + " -> " + GetAliasses(command));
+            Debug.Log("Aliasses For: " + lowerParameter + " -> " + GetAliasses(command));
         }
         else
         {
-            if (parameter == "")
+            if (lowerParameter == "")
             {
                 Debug.Log("Command Name Required");
             }
             else
             {
-                Debug.Log("Command Not Found: " + parameter);
+                Debug.Log("Command Not Found: " + lowerParameter);
             }
         }
     }
